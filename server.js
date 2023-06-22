@@ -11,27 +11,13 @@ mongoose.connect(db,{
   useCreateIndex: true,
   useFindAndModify: false,
   useUnifiedTopology: true  
-}).then(()=>console.log("db connection successful"));                      
+}).then(()=>console.log("db connection successful"));                        
 
 
 
   
   
-  // const test= new tour({
-  //   name: "naveen  ",  
-  //   rating: 4
-  // })
-
-  // const bd= new tour({
-  //   name: "naveen  ",  
-  //   rating: 4
-  // })
-
-
   
-
-//test.save().then((doc)=>console.log(doc)).catch((err)=> console.err)
-//bd.save().then((doc)=>console.log(doc)).catch((err)=> console.err)
 
 const port= process.env.port;  
 console.log(port)

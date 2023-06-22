@@ -32,13 +32,4 @@ app.all('*', (req, res, next) => {
 
  app.use(globalErrorHandler);
 
-//app.use(errorHandler);   
-
-
-
-
-//app.get("/",(req,res)=>{
-   // res.send("bd")
-// });
-
  module.exports =app;

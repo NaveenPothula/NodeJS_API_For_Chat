@@ -1,8 +1,12 @@
 const User = require('./../models/user');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
+const Order= require("./../models/order")  
+
+
+
 exports.getAllUsers = catchAsync(async (req, res, next) => {
-    const users = await User.find({"role":"transporter"});
+    const users = await User.find({role: "Transporter"});
   
     // SEND RESPONSE
     res.status(200).json({
@@ -41,6 +45,20 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
     res.status(201).json({
         status: "success",  
         data: newuser
+
+    })
+
+  }); 
+
+  exports.deleteALL = catchAsync(async (req, res, next) => {  
+     await User.remove({});  
+     await Order.remove({});  
+
+      
+
+    res.status(201).json({
+        status: "success",  
+  
 
     })
 

@@ -1,29 +1,48 @@
 const mongoose = require('mongoose');
+const User= require("./../models/user")
 
 const orderSchema= new mongoose.Schema({
-    Order_id:{
-        type: String,
-        required: True
-    },
-    From: {
+    Manufacturer: {
         type: mongoose.Schema.ObjectId,
-        required: True  
+        ref: "User"
     },
-    To: {
+    Transporter:{
         type: mongoose.Schema.ObjectId,
-        required: True  
-    },
-    Address: {
-        type: String,
-        required: True
+        ref: "User"
     },
     Price: Number,
+    Address: {
+        type: String,
+        required: true
+    } ,
+    From:{
+        type: String,
+        required: true
+    },
+    To: { 
+        type: String,
+        required: true
+    }
 },
 { 
     toJSON: { virtuals: true },
-    toObject: { virtuals: true }
+    toObject: { virtuals: true }  
 })
 
-const Order = mongoose.model('Order', orderSchema);  
+
+
+orderSchema.pre(/^find/, function(next) {
+    this.populate({
+      path: 'Manufacturer',
+     select: 'name email'
+    }).populate({
+           path: 'Transporter',
+        select: 'name email'
+     });
+    next();
+  }); 
   
-  module.exports = Order;
+    const Order = mongoose.model('Order', orderSchema);
+  module.exports = Order;  
+
+  

@@ -2,10 +2,13 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 const bcrypt = require('bcrypt');
 
+
 const userSchema = new mongoose.Schema({
+
+   
     name: {
       type: String,
-      //required: [true, 'Please tell us your name!']
+      required: [true, 'Please tell us your name!']
     },
     email: {
       type: String,
@@ -16,7 +19,7 @@ const userSchema = new mongoose.Schema({
     },
     role: {
       type: String,
-      enum: ["manufacturer","transporter"],
+      enum: ["Manufacturer","Transporter"],
       select: true ,
       required: true   
     },
@@ -40,7 +43,17 @@ const userSchema = new mongoose.Schema({
     Messages:[{
         type: mongoose.Schema.ObjectId,
         ref: "Order"
-    }]},
+    }],
+    sent:[{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Order"
+    }],
+    Address: {
+      type: String,  
+      required : true  
+    }
+  },
+   
     
     
        { toJSON: { virtuals: true },
