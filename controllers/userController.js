@@ -50,16 +50,4 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
 
   }); 
 
-  exports.deleteALL = catchAsync(async (req, res, next) => {  
-     await User.remove({});  
-     await Order.remove({});  
-
-      
-
-    res.status(201).json({
-        status: "success",  
   
-
-    })
-
-  }); 
